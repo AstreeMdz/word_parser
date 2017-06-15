@@ -20,21 +20,6 @@ int addElement(list* a_list, element_value a_element_value){
     return 0;
 }
 
-int addElement(list* a_list, element_value a_element_value){
-    
-    element* new_element = (element*) malloc(sizeof(element));
-    new_element->value = a_element_value;
-    new_element->next = NULL;
-    
-    if(*a_list == NULL){
-        *a_list = new_element;
-    } else {
-        new_element->next = *a_list;
-        *a_list = new_element;
-
-    }
-    return 0;
-}
 
 int printElement(list a_list){
       

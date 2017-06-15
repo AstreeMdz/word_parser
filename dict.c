@@ -22,7 +22,10 @@ void build_dict(list* ma_list, const char* path_dict){
 			strncpy(my_elemt_value.word, word, strlen(word));
 			printf("sdjhf");
 			free(word);
+			printf("a");
 			addElement(ma_list, my_elemt_value);
+			printf("b");
+
 		}
 	}
 	
@@ -35,21 +38,22 @@ char * get_word(FILE* my_file)
 	char lettre = 0;
 	
 	char * my_word = malloc(sizeof(char));
-	
-	int i = 1;
+	my_word = NULL;
+	int i = 0;
 	lettre = fgetc(my_file);
 
 
 		while(lettre != ' ' && lettre != EOF && lettre != '\n')
 		{
-			my_word = (char *) realloc(my_word, sizeof(char)*i);
-			memcpy(my_word, &lettre, sizeof(char));
+			my_word = (char *) realloc(my_word, sizeof(char)*(i+1));
+			//memcpy(my_word, &lettre, sizeof(char));
+			*(my_word + i)= lettre;
 			i++;
 			lettre = fgetc(my_file);
 
-			printf("1%s \n", my_word);
+			printf("1%s2 \n", my_word);
 		}
-		printf("jsdh");
+		//printf("jsdh");
 	return my_word;
 	
 }

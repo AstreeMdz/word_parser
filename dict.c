@@ -3,7 +3,7 @@
 #include "string.h"
 #include "list.h"
 
-static int get_word(FILE* my_file, char* my_word);
+static char * get_word(FILE* my_file);
 
 void build_dict(list* ma_list, const char* path_dict){
 	
@@ -17,9 +17,11 @@ void build_dict(list* ma_list, const char* path_dict){
 	
 	if(fichier != NULL && ma_list != NULL)
 	{
-		while (get_word(fichier, word)== 0)
+		while ((word = get_word(fichier)) != NULL)
 		{
 			strncpy(my_elemt_value.word, word, strlen(word));
+			printf("sdjhf");
+			free(word);
 			addElement(ma_list, my_elemt_value);
 		}
 	}
@@ -27,7 +29,7 @@ void build_dict(list* ma_list, const char* path_dict){
 } 
 
 
-int get_word(FILE* my_file, char* my_word1)
+char * get_word(FILE* my_file)
 {
 	
 	char lettre = 0;
@@ -38,26 +40,16 @@ int get_word(FILE* my_file, char* my_word1)
 	lettre = fgetc(my_file);
 
 
-		while(lettre != 0x20)
+		while(lettre != ' ' && lettre != EOF && lettre != '\n')
 		{
 			my_word = (char *) realloc(my_word, sizeof(char)*i);
 			memcpy(my_word, &lettre, sizeof(char));
-			//my_word = &lettre;
 			i++;
-			printf("\n%c %s\n", lettre, my_word);
-
 			lettre = fgetc(my_file);
-			printf("%x\n",(unsigned int)lettre );
-			
+
+			printf("1%s \n", my_word);
 		}
-		printf("blq");
-		if(lettre == EOF)
-		{
-			return 1;
-		} else 
-		{
-			my_word1 = my_word;
-			return 0;
-		}
+		printf("jsdh");
+	return my_word;
 	
 }

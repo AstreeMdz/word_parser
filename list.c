@@ -15,23 +15,30 @@ int addElement(list* a_list, element_value a_element_value){
     } else {
         new_element->next = *a_list;
         *a_list = new_element;
-
     }
     return 0;
 }
 
 
-int printElement(list a_list){
+void printElement(list a_list){
       
-    if(a_list != NULL){
-        
-        while(a_list->next != NULL){
-            printf("%s\n", a_list->value.word);
-            a_list = a_list->next;
-        }
-    } 
+       
+    while(a_list != NULL){
+        printf("%s\n", a_list->value.word);
+        a_list = a_list->next;
+    }
     
-    return 0;
+}
+
+void printElementOccurence(list a_list){
+      
+       
+    while(a_list != NULL){
+        printf("%s :", a_list->value.word);
+        printf(" %d\n", a_list->value.occurence);
+        a_list = a_list->next;
+    }
+    
 }
 
 int CheckElement(list a_list){
